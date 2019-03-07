@@ -4,25 +4,28 @@ const initialState = {
   visible: false
 }
 
-const setNotification = (message, error) => {
-  return {
-    type: 'SET',
-    data: { message, error, visible: true }
+const setNotification = (message, error, timeout) => {
+  return dispatch => {
+    dispatch({
+      type: 'NOTIFICATION_SET',
+      data: { message, error, visible: true }
+    })
+    setTimeout(() => dispatch(hideNotification()), timeout)
   }
 }
 
 const hideNotification = () => {
   return {
-    type: 'HIDE',
+    type: 'NOTIFICATION_HIDE',
     data: {}
   }
 }
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'SET':
+    case 'NOTIFICATION_SET':
       return { ...action.data }
-    case 'HIDE':
+    case 'NOTIFICATION_HIDE':
       return { ...initialState }
     default:
       return state

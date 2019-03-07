@@ -2,23 +2,23 @@ const initialState = ''
 
 const setFilter = (filter) => {
   return {
-    type: 'SET',
+    type: 'FILTER_SET',
     data: filter
   }
 }
 
 const clearFilter = (filter) => {
   return {
-    type: 'CLEAR',
+    type: 'FILTER_CLEAR',
     data: {}
   }
 }
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'SET':
+    case 'FILTER_SET':
       return action.data
-    case 'CLEAR':
+    case 'FILTER_CLEAR':
       return initialState
     default:
       return state
